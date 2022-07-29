@@ -1,9 +1,12 @@
-# Fabric Example Mod
+# Beam pass mod
+With this mod, the beacon beam will be able to pass through some blocks even if they are solid. 
+For now, only the Lodestone, because I thought that having a lodestone compass pointing to a beacon would be useful and cool. 
+You could still do it by place it under it I guess... well whatever here we are!
 
 ## Setup
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
-
+Download the mod from Modrinth or Curseforge and place it into your /mods/ folder, after you have installed the Fabric Loader!
 ## License
+GNU LGPL3
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+Feel free to include this mod in any modpack, but please credit me, it would be kinda cool. And also, check out my other mods!

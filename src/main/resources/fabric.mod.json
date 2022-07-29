@@ -1,36 +1,39 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "beampass",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "BeamPass Mod",
+  "description": "A mod that will let beacon beam pass through some blocks like the lodestone! ",
   "authors": [
-    "Me!"
+    "Emafire003"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/Emafire003/BeamPass",
+    "sources": "https://github.com/Emafire003/BeamPass",
+    "issues": "https://github.com/Emafire003/BeamPass/issues"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "GNU LGPL3",
+  "icon": "assets/beampass/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "me.emafire003.dev.beampass.BeamPass"
+    ],
+    "preLaunch": [
+      "me.emafire003.dev.beampass.BeamPassPreLaunch"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "beampass.mixins.json"
   ],
 
   "depends": {
-    "fabricloader": ">=0.14.6",
-    "fabric": "*",
-    "minecraft": "~1.19",
-    "java": ">=17"
+    "fabricloader": ">=0.14.8",
+    "minecraft": ">=1.17-",
+    "java": ">=16"
   },
   "suggests": {
     "another-mod": "*"
