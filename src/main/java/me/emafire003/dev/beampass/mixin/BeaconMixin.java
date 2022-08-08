@@ -1,6 +1,7 @@
 package me.emafire003.dev.beampass.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import me.emafire003.dev.beampass.BeamPass;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BeaconBlockEntity;
@@ -26,23 +27,16 @@ public class BeaconMixin {
 		if(bstate == null){
 			return original;
 		}
-		if(bstate.getBlock().equals(Blocks.LODESTONE)){
+		//If the block met by the beam is in the list of bypassable blocks,
+		//it returns 0 as its opacity, (only in this case it never changes the opacity of the block itself)
+		//so the beam code thinks it should let the beam through that block it met as well.
+		if(BeamPass.bypassableBlocks.contains(bstate.getBlock())){
 			return 0;
 		}
 		return original;
 	}
 
-	/*@ModifyReceiver(
-			method = "isOf",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;isOf(Lnet/minecraft/block/Block;)Z")
-	)
-	private BlockState changeObject(BlockState receiver, int newX) {
-		if (newX == 10) {
-			return object2;
-		}
-		return receiver;
-	}*/
-
+	//Gets the block
 	@Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;getBlock()Lnet/minecraft/block/Block;"), locals = LocalCapture.CAPTURE_FAILSOFT)
 	private static void getBlockState(World world, BlockPos pos, BlockState state, BeaconBlockEntity blockEntity, CallbackInfo ci, int i, int j, int k, BlockPos blockPos, BeaconBlockEntity.BeamSegment beamSegment, int l, int m, BlockState blockState){
 		bstate = blockState;

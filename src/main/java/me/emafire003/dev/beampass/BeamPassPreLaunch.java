@@ -12,6 +12,6 @@ public class BeamPassPreLaunch implements PreLaunchEntrypoint {
 	public void onPreLaunch() {
 		BeamPass.LOGGER.info("Starting BeamPass mod...");
 		MixinExtrasBootstrap.init();
-		BeamPass.LOGGER.info("Done!");
+		BeamPass.LOGGER.info("Mixin loaded!");
 	}
 }

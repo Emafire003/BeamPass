@@ -17,6 +17,17 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	maven { url 'https://jitpack.io' }
+	// Needed to retrieve Cloth Config Lite for Omega Config in development environments.
+	/*maven {
+		name = "Shedaniel's Maven"
+		url = "https://maven.shedaniel.me/"
+	}
+
+	// Optional dependency for Mod Menu - recommended for viewing your screen in development
+	maven {
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/releases/"
+	}*/
 }
 
 dependencies {
@@ -33,6 +44,14 @@ dependencies {
 	annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.12")
 	include ("com.github.LlamaLad7:MixinExtras:0.0.12")
 
+	//Config library
+	/*include("com.github.Luligabi1.omega-config:omega-config-base:${project.omega_config_version}")
+	modImplementation("com.github.Luligabi1.omega-config:omega-config-base:${project.omega_config_version}")
+
+	include("com.github.Luligabi1.omega-config:omega-config-gui:${project.omega_config_version}")
+	modImplementation("com.github.Luligabi1.omega-config:omega-config-gui:${project.omega_config_version}")
+	modRuntimeOnly ("com.terraformersmc:modmenu:${project.modmenu_version}") // 3.0.1 for 1.18.1
+	*/
 	// Uncomment the following line to enable the deprecated Fabric API modules. 
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 
