@@ -1,7 +1,9 @@
 package me.emafire003.dev.beampass;
 
+import me.emafire003.dev.beampass.commands.BeamCommands;
 import me.emafire003.dev.beampass.config.DataSaver;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
@@ -30,6 +32,7 @@ public class BeamPass implements ModInitializer {
 		initializeBypassableBlocks();
 		DataSaver.createFile();
 		bypassableBlocks = DataSaver.getBlockList();
+		CommandRegistrationCallback.EVENT.register(BeamCommands::registerCommands);
 		LOGGER.info("Done!");
 	}
 
@@ -65,5 +68,23 @@ public class BeamPass implements ModInitializer {
 
 		}
 		return list;
+	}
+
+	/**
+	 * This method is used to add a block that will
+	 * be beampassable*/
+	public static void addBlock(Block block){
+		bypassableBlocks.add(block);
+		bypassableBlocksIds = convertFromBlockList(bypassableBlocks);
+		DataSaver.write();
+	}
+
+	/**
+	 * This method is used to remove a block that will
+	 * be beampassable*/
+	public static void removeBlock(Block block){
+		bypassableBlocks.remove(block);
+		bypassableBlocksIds = convertFromBlockList(bypassableBlocks);
+		DataSaver.write();
 	}
 }

@@ -23,7 +23,7 @@ public class BeaconMixin {
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;getOpacity(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)I"
 					)
 	)
-	private static int onlyIfNotLodestone(int original) {
+	private static int onlyIfNotBeamPassable(int original) {
 		if(bstate == null){
 			return original;
 		}
