@@ -24,7 +24,7 @@ public class AddBlocksCommand implements BeamCommand {
         BlockState blockState = BlockStateArgumentType.getBlockState(context, "block").getBlockState();
         ServerCommandSource source = context.getSource();
         BeamPass.addBlock(blockState.getBlock());
-        source.sendFeedback(Text.literal("The §a" + blockState.getBlock().getName().getString() + " §rblock has been added to the list beam-passable blocks!" ), false);
+        source.sendFeedback(() -> Text.literal("The §a" + blockState.getBlock().getName().getString() + " §rblock has been added to the list beam-passable blocks!" ), false);
         return 1;
     }
 

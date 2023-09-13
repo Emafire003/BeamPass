@@ -5,10 +5,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import me.emafire003.dev.beampass.BeamPass;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.command.argument.BlockPosArgumentType;
-import net.minecraft.command.argument.BlockStateArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
@@ -24,10 +21,10 @@ public class GetBlocksCommand implements BeamCommand {
 
     private int getBlock(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         ServerCommandSource source = context.getSource();
-        source.sendFeedback(Text.literal("Sending a list of current BeamPassable blocks, other than vanilla ones:"), false);
+        source.sendFeedback(() -> Text.literal("Sending a list of current BeamPassable blocks, other than vanilla ones:"), false);
 
         for(Block block : BeamPass.bypassableBlocks){
-            source.sendFeedback(Text.literal(block.getName().getString()), false);
+            source.sendFeedback(() ->Text.literal(block.getName().getString()), false);
         }
         return 1;
     }

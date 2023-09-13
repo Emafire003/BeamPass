@@ -3,7 +3,6 @@ package me.emafire003.dev.beampass.mixin;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import me.emafire003.dev.beampass.BeamPass;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

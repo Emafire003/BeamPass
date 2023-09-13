@@ -23,7 +23,7 @@ public class RemoveBlocksCommand implements BeamCommand {
         BlockState blockState = BlockStateArgumentType.getBlockState(context, "block").getBlockState();
         ServerCommandSource source = context.getSource();
         BeamPass.removeBlock(blockState.getBlock());
-        source.sendFeedback(Text.literal("The §c" + blockState.getBlock().getName().getString() + " §rblock has been removed from the list beam-passable blocks!" ), false);
+        source.sendFeedback(() ->Text.literal("The §c" + blockState.getBlock().getName().getString() + " §rblock has been removed from the list beam-passable blocks!" ), false);
         return 1;
     }
 

@@ -6,8 +6,8 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,7 +50,7 @@ public class BeamPass implements ModInitializer {
 	public static List<String> convertFromBlockList(List<Block> typelist){
 		List<String> list = new ArrayList<>();
 		for(Block type : typelist){
-			list.add(Registry.BLOCK.getId(type).toString());
+			list.add(Registries.BLOCK.getId(type).toString());
 		}
 		return list;
 	}
@@ -61,7 +61,7 @@ public class BeamPass implements ModInitializer {
 	public static List<Block> convertToBlockList(List<String> typelist){
 		List<Block> list = new ArrayList<>();
 		for(String type : typelist){
-			Block block = Registry.BLOCK.get(new Identifier(type));
+			Block block = Registries.BLOCK.get(new Identifier(type));
 			if(block != null){
 				list.add(block);
 			}
