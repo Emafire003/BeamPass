@@ -56,17 +56,15 @@ public class BeamPass implements ModInitializer {
 	}
 
 	/**
-	 * Used to convert String values to EntityType (those in a list)
+	 * Used to convert String values to Blocks
 	 * */
 	public static List<Block> convertToBlockList(List<String> typelist){
 		List<Block> list = new ArrayList<>();
 		for(String type : typelist){
-			Block block = Registries.BLOCK.get(new Identifier(type));
-			if(block != null){
-				list.add(block);
-			}
+			Block block = Registries.BLOCK.get(Identifier.of(type));
+            list.add(block);
 
-		}
+        }
 		return list;
 	}
 

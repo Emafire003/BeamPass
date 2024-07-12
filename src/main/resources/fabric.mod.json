@@ -21,9 +21,6 @@
   "entrypoints": {
     "main": [
       "me.emafire003.dev.beampass.BeamPass"
-    ],
-    "preLaunch": [
-      "me.emafire003.dev.beampass.BeamPassPreLaunch"
     ]
   },
   "mixins": [
@@ -32,7 +29,7 @@
 
   "depends": {
     "fabricloader": ">=0.14.8",
-    "minecraft": ">=1.17-",
+    "minecraft": ">=1.20-",
     "java": ">=16"
   },
   "suggests": {
