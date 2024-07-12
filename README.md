@@ -4,7 +4,7 @@ With this mod, the beacon beam will be able to pass through some blocks even if 
 For example, the Lodestone, because I thought that having a lodestone compass pointing to a beacon would be useful and cool. 
 You could still do it by place it under it I guess... well whatever here we are!
 
-##Commands
+## Commands
 You can either use */beam* or */beampass*, they are aliases:
 - `/beam add <block>` To make a block beampassable (aka, the beam will be able to pass through it)
 - `/beam remove <block>` To remove it
