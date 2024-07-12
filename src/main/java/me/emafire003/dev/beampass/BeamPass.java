@@ -61,7 +61,7 @@ public class BeamPass implements ModInitializer {
 	public static List<Block> convertToBlockList(List<String> typelist){
 		List<Block> list = new ArrayList<>();
 		for(String type : typelist){
-			Block block = Registries.BLOCK.get(Identifier.of(type));
+			Block block = Registries.BLOCK.get(Identifier.tryParse(type));
             list.add(block);
 
         }
