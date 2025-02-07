@@ -10,8 +10,6 @@ You can either use */beam* or */beampass*, they are aliases:
 - `/beam remove <block>` To remove it
 - `/beam get` To get a list of all blocks that are made beampassable by this mod
 
-[![bisecthosting](https://www.bisecthosting.com/partners/custom-banners/e9bbf36a-be01-4324-b393-dae88a01be66.webp)](https://www.bisecthosting.com/LightDev)
-
 ## Setup
 Download the mod from Modrinth or Curseforge and place it into your /mods/ folder, after you have installed the Fabric Loader!
 
