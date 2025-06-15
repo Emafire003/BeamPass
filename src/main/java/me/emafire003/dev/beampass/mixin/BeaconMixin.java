@@ -22,7 +22,7 @@ public class BeaconMixin {
 
 	@ModifyExpressionValue(
 			method = "tick",
-			at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;getOpacity(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)I"
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockState;getOpacity()I"
 					)
 	)
 	private static int onlyIfNotBeamPassable(int original) {
