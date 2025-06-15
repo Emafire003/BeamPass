@@ -17,7 +17,6 @@ import static me.emafire003.dev.beampass.BeamPass.LOGGER;
 public class DataSaver {
 
     public static String PATH = String.valueOf(FabricLoader.getInstance().getConfigDir().resolve("beampass_blocklist.json"));
-    @SuppressWarnings("UnstableApiUsage")
     public static Type blockBypassListToken = new TypeToken<List<String>>(){}.getType();
 
     static Gson gson = new Gson();

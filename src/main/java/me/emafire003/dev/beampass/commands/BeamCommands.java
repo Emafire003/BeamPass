@@ -2,6 +2,7 @@ package me.emafire003.dev.beampass.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.tree.LiteralCommandNode;
+import me.emafire003.dev.beampass.commands.permissions.PermissionsChecker;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -17,6 +18,7 @@ public class BeamCommands {
 
         LiteralCommandNode<ServerCommandSource> alias = CommandManager
                 .literal("beampass")
+                .requires(PermissionsChecker.hasPerms("beampass.commands", 2))
                 .build();
 
         dispatcher.getRoot().addChild(lightcommands);

@@ -4,6 +4,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import me.emafire003.dev.beampass.BeamPass;
+import me.emafire003.dev.beampass.commands.permissions.PermissionsChecker;
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.CommandManager;
@@ -36,7 +37,8 @@ public class GetBlocksCommand implements BeamCommand {
 
     public LiteralCommandNode<ServerCommandSource> getNode() {
         return CommandManager
-                .literal("get").executes(this::getBlock)
+                .literal("get").requires(PermissionsChecker.hasPerms("beampass.commands.get", 2))
+                .executes(this::getBlock)
                 .build();
     }
 }

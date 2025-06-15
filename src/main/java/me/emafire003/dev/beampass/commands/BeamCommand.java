@@ -1,7 +1,6 @@
 package me.emafire003.dev.beampass.commands;
 
 import com.mojang.brigadier.tree.LiteralCommandNode;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.command.ServerCommandSource;
 
 

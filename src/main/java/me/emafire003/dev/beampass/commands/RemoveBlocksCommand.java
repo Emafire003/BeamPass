@@ -4,6 +4,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import me.emafire003.dev.beampass.BeamPass;
+import me.emafire003.dev.beampass.commands.permissions.PermissionsChecker;
 import net.minecraft.block.BlockState;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.BlockStateArgumentType;
@@ -30,6 +31,7 @@ public class RemoveBlocksCommand implements BeamCommand {
     public LiteralCommandNode<ServerCommandSource> getNode() {
         return CommandManager
                 .literal("remove")
+                .requires(PermissionsChecker.hasPerms("beampass.commands.remove", 2))
                 .then(
                         CommandManager.argument("block", BlockStateArgumentType.blockState(commandRegistryAccess))
                                 .executes(this::addBlock)
