@@ -22,8 +22,8 @@
     "main": [
       "me.emafire003.dev.beampass.BeamPass"
     ],
-    "preLaunch": [
-      "me.emafire003.dev.beampass.BeamPassPreLaunch"
+    "client": [
+      "me.emafire003.dev.beampass.BeamPassClient"
     ]
   },
   "mixins": [
@@ -32,7 +32,7 @@
 
   "depends": {
     "fabricloader": ">=0.14.8",
-    "minecraft": ">=1.17-",
+    "minecraft": ">=1.20-",
     "java": ">=16"
   },
   "suggests": {

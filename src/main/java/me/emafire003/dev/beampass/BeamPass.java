@@ -2,11 +2,19 @@ package me.emafire003.dev.beampass;
 
 import me.emafire003.dev.beampass.commands.BeamCommands;
 import me.emafire003.dev.beampass.config.DataSaver;
+import me.emafire003.dev.beampass.event.PlayerJoinEvent;
+import me.emafire003.dev.beampass.networking.SyncBlocksPayloadS2C;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +41,19 @@ public class BeamPass implements ModInitializer {
 		DataSaver.createFile();
 		bypassableBlocks = DataSaver.getBlockList();
 		CommandRegistrationCallback.EVENT.register(BeamCommands::registerCommands);
-		LOGGER.info("Done!");
+
+		//In any case, registers the packet:
+		PayloadTypeRegistry.playS2C().register(SyncBlocksPayloadS2C.ID, SyncBlocksPayloadS2C.PACKET_CODEC);
+
+
+		//register the join event only for the dedicated server
+		if(FabricLoader.getInstance().getEnvironmentType().equals(EnvType.SERVER)){
+			PlayerJoinEvent.EVENT.register((player, server) -> {
+				ServerPlayNetworking.send(player, new SyncBlocksPayloadS2C(bypassableBlocksIds));
+				return ActionResult.PASS;
+			});
+		}
+
 	}
 
 	private void initializeBypassableBlocks(){
@@ -56,35 +76,42 @@ public class BeamPass implements ModInitializer {
 	}
 
 	/**
-	 * Used to convert String values to EntityType (those in a list)
+	 * Used to convert String values to Blocks
 	 * */
 	public static List<Block> convertToBlockList(List<String> typelist){
 		List<Block> list = new ArrayList<>();
 		for(String type : typelist){
-			Block block = Registries.BLOCK.get(new Identifier(type));
-			if(block != null){
-				list.add(block);
-			}
+			Block block = Registries.BLOCK.get(Identifier.of(type));
+			list.add(block);
 
-		}
+        }
 		return list;
 	}
 
 	/**
 	 * This method is used to add a block that will
 	 * be beampassable*/
-	public static void addBlock(Block block){
+	public static void addBlock(Block block, MinecraftServer server){
 		bypassableBlocks.add(block);
 		bypassableBlocksIds = convertFromBlockList(bypassableBlocks);
 		DataSaver.write();
+		//if dedicated server
+		if(FabricLoader.getInstance().getEnvironmentType().equals(EnvType.SERVER)){
+			server.getPlayerManager().getPlayerList().forEach( player -> ServerPlayNetworking.send(player, new SyncBlocksPayloadS2C(bypassableBlocksIds)));
+		}
+
 	}
 
 	/**
 	 * This method is used to remove a block that will
 	 * be beampassable*/
-	public static void removeBlock(Block block){
+	public static void removeBlock(Block block, MinecraftServer server){
 		bypassableBlocks.remove(block);
 		bypassableBlocksIds = convertFromBlockList(bypassableBlocks);
 		DataSaver.write();
+		//if dedicated server
+		if(FabricLoader.getInstance().getEnvironmentType().equals(EnvType.SERVER)){
+			server.getPlayerManager().getPlayerList().forEach( player -> ServerPlayNetworking.send(player, new SyncBlocksPayloadS2C(bypassableBlocksIds)));
+		}
 	}
 }

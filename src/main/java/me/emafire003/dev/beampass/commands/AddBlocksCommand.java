@@ -23,7 +23,7 @@ public class AddBlocksCommand implements BeamCommand {
     private int addBlock(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         BlockState blockState = BlockStateArgumentType.getBlockState(context, "block").getBlockState();
         ServerCommandSource source = context.getSource();
-        BeamPass.addBlock(blockState.getBlock());
+        BeamPass.addBlock(blockState.getBlock(), source.getServer());
         source.sendFeedback(() -> Text.literal("The §a" + blockState.getBlock().getName().getString() + " §rblock has been added to the list beam-passable blocks!" ), false);
         return 1;
     }
