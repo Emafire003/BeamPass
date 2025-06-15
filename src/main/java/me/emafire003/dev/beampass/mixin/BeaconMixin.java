@@ -1,6 +1,7 @@
 package me.emafire003.dev.beampass.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.sugar.Local;
 import me.emafire003.dev.beampass.BeamPass;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BeaconBlockEntity;

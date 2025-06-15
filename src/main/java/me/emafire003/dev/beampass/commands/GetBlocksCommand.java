@@ -4,6 +4,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import me.emafire003.dev.beampass.BeamPass;
+import me.emafire003.dev.beampass.commands.permissions.PermissionsChecker;
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.CommandManager;
@@ -21,17 +22,23 @@ public class GetBlocksCommand implements BeamCommand {
 
     private int getBlock(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         ServerCommandSource source = context.getSource();
-        source.sendFeedback(() -> Text.literal("Sending a list of current BeamPassable blocks, other than vanilla ones:"), false);
+        try {
+            source.sendFeedback(() -> Text.literal("Sending a list of current BeamPassable blocks, other than vanilla ones:"), false);
 
-        for(Block block : BeamPass.bypassableBlocks){
-            source.sendFeedback(() ->Text.literal(block.getName().getString()), false);
+            for(Block block : BeamPass.bypassableBlocks){
+                source.sendFeedback(() ->Text.literal("- §b" + block.getName().getString()), false);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            source.sendMessage(Text.literal(e.getMessage()));
         }
         return 1;
     }
 
     public LiteralCommandNode<ServerCommandSource> getNode() {
         return CommandManager
-                .literal("get").executes(this::getBlock)
+                .literal("get").requires(PermissionsChecker.hasPerms("beampass.commands.get", 2))
+                .executes(this::getBlock)
                 .build();
     }
 }

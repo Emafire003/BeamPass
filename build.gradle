@@ -17,6 +17,7 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
     maven { url 'https://jitpack.io' }
+    mavenCentral()
     // Needed to retrieve Cloth Config Lite for Omega Config in development environments.
     /*maven {
         name = "Shedaniel's Maven"
@@ -39,10 +40,7 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    //Mixin Extras, but I could use the continue thing
-    implementation("com.github.LlamaLad7:MixinExtras:0.0.12")
-    annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.12")//technically  I don't need this anymore
-    include ("com.github.LlamaLad7:MixinExtras:0.0.12")
+    modImplementation('me.lucko:fabric-permissions-api:0.3.1')
 
 }
 

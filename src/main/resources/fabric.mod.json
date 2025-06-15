@@ -21,6 +21,9 @@
   "entrypoints": {
     "main": [
       "me.emafire003.dev.beampass.BeamPass"
+    ],
+    "client": [
+      "me.emafire003.dev.beampass.BeamPassClient"
     ]
   },
   "mixins": [
