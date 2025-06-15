@@ -26,7 +26,7 @@ public class GetBlocksCommand implements BeamCommand {
             source.sendFeedback(() -> Text.literal("Sending a list of current BeamPassable blocks, other than vanilla ones:"), false);
 
             for(Block block : BeamPass.bypassableBlocks){
-                source.sendFeedback(() ->Text.literal(block.getName().getString()), false);
+                source.sendFeedback(() ->Text.literal("- §b" + block.getName().getString()), false);
             }
         }catch (Exception e){
             e.printStackTrace();
